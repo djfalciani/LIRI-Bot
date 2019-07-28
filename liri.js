@@ -19,7 +19,7 @@ var spotify = new Spotify({
 if (command === "concert-this") {
     concert.findConcert(search);
 } else if (command === 'spotify-this-song') {
-    // By default, if no search term is provided, search for "Andy Griffith"
+    // By default, if no search term is provided, search for "The Sign"
     if (!search) {
         search = "The Sign";
     }
@@ -27,10 +27,6 @@ if (command === "concert-this") {
         type: 'track', query: `${search}`
     }).then(function(response) {
         const jsonData = response.tracks.items;
-        // console.log(jsonData[0].artists[0].name);
-        // console.log(jsonData[0].name);
-        // console.log(jsonData[0].preview_url);
-        // console.log(jsonData[0].album.name);
     
         jsonData.forEach(element => {
             const divider = `\n-----------------------------\n`;
@@ -42,6 +38,7 @@ if (command === "concert-this") {
         console.log(err);
       });
 } else if (command === 'movie-this') {
+    // By default, if no search term is provided, search for "Mr. Nobody"
     if (!search) {
         search = "Mr. Nobody";
     }
