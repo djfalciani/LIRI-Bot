@@ -1,12 +1,14 @@
 require("dotenv").config();
 var ConcertEvent = require("./BandsInTown.js");
 var Spotify = require('node-spotify-api');
+var Movie = require("./movie.js");
 
 let command = process.argv[2];
 let search = process.argv.slice(3).join(" ");
 
-// Create a new TV object
+
 var concert = new ConcertEvent();
+var movie = new Movie();
 
 var spotify = new Spotify({
     id: process.env.SPOTIFY_ID,
@@ -39,4 +41,10 @@ if (command === "concert-this") {
       .catch(function(err) {
         console.log(err);
       });
-} 
+} else if (command === 'movie-this') {
+    if (!search) {
+        search = "Mr. Nobody";
+    }
+
+    movie.findMovie(search);
+}
